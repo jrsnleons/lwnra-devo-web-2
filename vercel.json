@@ -27,6 +27,19 @@
             ]
         },
         {
+            "source": "/(icon|apple-icon|opengraph-image)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=86400, stale-while-revalidate=31536000"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "image/png"
+                }
+            ]
+        },
+        {
             "source": "/favicon.ico",
             "headers": [
                 {
