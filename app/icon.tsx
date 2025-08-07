@@ -1,18 +1,17 @@
 import { ImageResponse } from "next/og";
-import { NextRequest } from "next/server";
 
 // Route segment config
 export const runtime = "edge";
 
+// Image metadata
+export const size = {
+    width: 32,
+    height: 32,
+};
+export const contentType = "image/png";
+
 // Image generation
-export default function Icon(request: NextRequest) {
-    const { searchParams } = new URL(request.url);
-    const size = searchParams.get("size");
-    
-    // Default to 32x32, but allow custom sizes for PWA icons
-    const iconSize = size ? parseInt(size) : 32;
-    const svgSize = Math.max(iconSize * 0.6, 16); // Scale SVG appropriately
-    
+export default function Icon() {
     return new ImageResponse(
         (
             <div
@@ -25,12 +24,12 @@ export default function Icon(request: NextRequest) {
                     alignItems: "center",
                     justifyContent: "center",
                     color: "white",
-                    borderRadius: iconSize >= 180 ? "20px" : "6px",
+                    borderRadius: "6px",
                 }}
             >
                 <svg
-                    width={svgSize}
-                    height={svgSize}
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +69,7 @@ export default function Icon(request: NextRequest) {
         ),
         // ImageResponse options
         {
-            width: iconSize,
-            height: iconSize,
+            ...size,
         }
     );
 }
