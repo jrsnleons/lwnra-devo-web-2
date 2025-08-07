@@ -49,24 +49,6 @@ npm run build
 npm run start
 ```
 
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push code to GitHub repository
-2. Connect repository to Vercel
-3. Set environment variables in Vercel dashboard
-4. Deploy automatically on push to main branch
-
-### Other Platforms
-
-The app can be deployed to any platform that supports Node.js:
-
--   **Netlify**: Use `npm run build` and deploy `.next` folder
--   **Railway**: Connect GitHub repo with automatic deployments
--   **DigitalOcean App Platform**: Use Node.js buildpack
--   **AWS Amplify**: Connect GitHub with Next.js preset
-
 ## Environment Variables
 
 Create `.env.local` for development:
@@ -75,6 +57,7 @@ Create `.env.local` for development:
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_APP_NAME="LWNRA Daily Devotionals"
 NEXT_PUBLIC_APP_DESCRIPTION="Daily spiritual guidance and reflection"
+NEXT_PUBLIC_SERVER_URL=***
 ```
 
 For production, update `NEXT_PUBLIC_APP_URL` to your domain.
