@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { getBaseUrl } from "@/lib/env";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -34,18 +35,12 @@ export const metadata: Metadata = {
     authors: [{ name: "jrsnleons" }],
     creator: "jrsnleons",
     publisher: "jrsnleons",
-    metadataBase: new URL(
-        process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
-    ),
+    metadataBase: new URL(getBaseUrl()),
     alternates: {
         canonical: "/",
     },
     icons: {
-        icon: [
-            "/favicon.ico",
-            "/favicon.svg",
-            "/icon"
-        ],
+        icon: ["/favicon.ico", "/favicon.svg", "/icon"],
         apple: "/apple-icon",
     },
     openGraph: {
