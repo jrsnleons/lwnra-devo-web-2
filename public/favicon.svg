@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="url(#bg)" />
+
+  <!-- Book cover scaled for 32x32 -->
+  <path d="M7 10C7 9.44772 7.44772 9 8 9H24C24.5523 9 25 9.44772 25 10V22C25 22.5523 24.5523 23 24 23H8C7.44772 23 7 22.5523 7 22V10Z"
+        fill="white" stroke="white" stroke-width="1" />
+
+  <!-- Book spine -->
+  <line x1="11" y1="9" x2="11" y2="23" stroke="#14b8a6" stroke-width="1" />
+
+  <!-- Pages/lines -->
+  <line x1="14" y1="12" x2="21" y2="12" stroke="#14b8a6" stroke-width="0.5" />
+  <line x1="14" y1="14" x2="21" y2="14" stroke="#14b8a6" stroke-width="0.5" />
+  <line x1="14" y1="16" x2="21" y2="16" stroke="#14b8a6" stroke-width="0.5" />
+  <line x1="14" y1="18" x2="19" y2="18" stroke="#14b8a6" stroke-width="0.5" />
+
+  <!-- Book bookmark -->
+  <path d="M8 9V13L9.5 12L11 13V9" fill="#06b6d4" stroke="#06b6d4" stroke-width="0.3" />
+</svg>
