@@ -9,12 +9,33 @@ if (!BASE_URL) {
     );
 }
 
+// Calculate seconds until 4:45 AM tomorrow
+function getSecondsUntil445AM(): number {
+    const now = new Date();
+    const target = new Date();
+    
+    // Set target to 4:45 AM
+    target.setHours(4, 45, 0, 0);
+    
+    // If it's already past 4:45 AM today, target tomorrow
+    if (now > target) {
+        target.setDate(target.getDate() + 1);
+    }
+    
+    // Calculate seconds until target time
+    const secondsUntilTarget = Math.floor((target.getTime() - now.getTime()) / 1000);
+    
+    // Minimum 1 hour cache to prevent too frequent requests
+    return Math.max(secondsUntilTarget, 3600);
+}
+
 // Cache the fetch function to avoid duplicate API calls
 export const getDevotional = cache(async (): Promise<Devotional> => {
     try {
         const response = await fetch(`${BASE_URL}/api/devotionals`, {
             next: {
-                revalidate: 86400, // Cache for 24 hours
+                revalidate: getSecondsUntil445AM(), // Cache until 4:45 AM
+                tags: ['devotional']
             },
         });
 
@@ -30,11 +51,10 @@ export const getDevotional = cache(async (): Promise<Devotional> => {
 
         const firstDevotional = data.data[0];
 
-        // Validate required fields
+        // Validate required fields - be more flexible with missing optional fields
         const requiredFields = [
             "date",
-            "reading",
-            "version",
+            "reading", 
             "passage",
             "title",
             "author",
@@ -50,7 +70,7 @@ export const getDevotional = cache(async (): Promise<Devotional> => {
         return {
             date: firstDevotional.date,
             reading: firstDevotional.reading,
-            version: firstDevotional.version,
+            version: firstDevotional.version || "NIV", // Default version if missing
             passage: firstDevotional.passage,
             reflection_qs: firstDevotional.reflection_qs || [],
             title: firstDevotional.title,
